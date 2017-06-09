@@ -2,12 +2,14 @@ package jp.ac.asojuku.jousena.koharu;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.content.Context;
 
 /**
  * Created by m-its on 2017/06/08.
  */
 
 public class DBManager extends SQLiteOpenHelper{
+
 
     public DBManager(Context context){
         super(context,"koharu.db",null,1);
@@ -30,7 +32,7 @@ public class DBManager extends SQLiteOpenHelper{
                 +"history(history_code INTEGER,destination TEXT)");
     }
 
-    public void onUpdate(SQLiteDatabase db,int oldVersion, int newVersion){
+    public void onUpgrade(SQLiteDatabase db,int oldVersion, int newVersion){
         db.execSQL("DROP TABLE trip,memoText,memoCheck,history");
         onCreate(db);
     }
